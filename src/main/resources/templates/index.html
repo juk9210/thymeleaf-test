@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Clients</title>
+</head>
+<body>
+  <div>
+    <div>
+      <h2 th:if="${clients eq null or clients.empty}">No clients yet!</h2>
+      <div th:if="${clients ne null}">
+        <h2>clients</h2>
+        <table>
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="item : ${clients}">
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.phone}"></td>
+            <td><a th:href="@{/edit/{id}(id=${item.id})}">Edit</a></td>
+            <td><a th:href="@{/delete/{id}(id=${item.id})}">Delete</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><a href="/new">Add</a></p>
+    </div>
+  </div>
+</body>
+</html>
